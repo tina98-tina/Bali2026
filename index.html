@@ -241,12 +241,11 @@
   <div class="stats">
     <div class="stat-chip">天數<b>8天7夜</b></div>
     <div class="stat-chip">人數<b>12人</b></div>
-    <div class="stat-chip">駐點<b>4區</b></div>
+    <div class="stat-chip">駐點<b>3區</b></div>
   </div>
   <div class="zones">
     <div class="zone-tag"><span class="zone-dot" style="background:#FF6F61"></span>庫塔 Kuta</div>
     <div class="zone-tag"><span class="zone-dot" style="background:#FF8C42"></span>南灣 Uluwatu/金巴蘭</div>
-    <div class="zone-tag"><span class="zone-dot" style="background:#8BC34A"></span>烏布 Ubud</div>
     <div class="zone-tag"><span class="zone-dot" style="background:#17C3B2"></span>藍夢島 Lembongan</div>
   </div>
 </div>
@@ -271,11 +270,13 @@
   <div class="card">
     <h4>🛵 Grab <span class="badge">短程機動</span></h4>
     <p>庫塔、水明漾、烏布市區內短距離移動可用 Grab，較彈性，適合小家庭分開行動時使用。</p>
+    <p style="margin-top:8px;">⚠️ 藍夢島（Nusa Lembongan）沒有 Grab，島上移動以步行、飯店接駁或租機車為主。</p>
   </div>
 
   <div class="card">
     <h4>⛴️ Sanur ↔ 藍夢島快艇</h4>
     <p>船程約30–40分鐘，建議12人整團提前線上訂同一班次，長輩小孩建議坐船身中段減少晃動，暈船藥可提前備用。</p>
+    <p style="margin-top:8px;">🚐 快艇公司通常有配合的接駁車，可從碼頭直接送到飯店，訂船票時可一併詢問加購接送服務。</p>
     <table class="tt">
       <tr><th>日期</th><th>航班</th><th>備註</th></tr>
       <tr><td class="d">7/28</td><td>去程約 12:00-13:00</td><td>Sanur → Lembongan</td></tr>
@@ -404,16 +405,14 @@ const DAYS = [
     {time:'10:00', title:'Uluwatu Temple 斷崖廟', desc:'注意猴子，貴重物品收好', map:'Uluwatu Temple'},
     {time:'12:30', title:'Melasti Beach 白沙灘', desc:'可租沙灘椅，適合小孩玩水', map:'Melasti Beach Bali'},
     {time:'15:30', title:'GWK 文化公園（選擇性）', desc:'拍照＋室內可避熱', map:'Garuda Wisnu Kencana'},
-    {time:'18:30', title:'金巴蘭海鮮晚餐＋日落', desc:'腳踩沙灘現烤海鮮，建議先訂位', tip:'💡 與 Kecak 火舞表演時間衝突，建議二選一，長輩小孩較適合直接吃海鮮看日落', map:'Menega Cafe Jimbaran'}
+    {time:'17:30', title:'Menega Cafe 金巴蘭海鮮晚餐＋日落', desc:'腳踩沙灘現烤海鮮', tip:'📌 已預訂 17:30，等待餐廳回覆確認中，這間非常難訂位，機會渺茫，建議準備備案', map:'Menega Cafe Jimbaran'}
   ]},
-  { n:3, date:'7/27（一）', zone:'ubud', title:'烏布文化生態一日遊', items:[
-    {time:'08:00', title:'包車出發前往烏布', desc:'車程約1.5-2小時，建議中途休息'},
-    {time:'09:30', title:'Tegalalang Rice Terrace', desc:'拍照、可選盪鞦韆，建議早上去較涼爽', map:'Tegalalang Rice Terrace'},
-    {time:'11:00', title:'Tirta Empul 聖泉寺', desc:'可淨身戲水，記得帶備用衣物', map:'Tirta Empul Temple'},
-    {time:'12:30', title:'午餐：Sari Organik / TIS Cafe', desc:'梯田景觀，免入場費', map:'Sari Organik Ubud'},
-    {time:'14:00', title:'Sacred Monkey Forest', desc:'小孩喜歡，注意隨身物品', map:'Sacred Monkey Forest Sanctuary'},
-    {time:'15:30', title:'烏布皇宮＋市場', desc:'自由購物逛街', map:'Ubud Palace'},
-    {time:'17:00', title:'包車返回庫塔', desc:'車程約1.5-2小時，可能塞車，車上休息', tip:'💡 晚餐建議回庫塔後再吃，這天別安排太滿'}
+  { n:3, date:'7/27（一）', zone:'kuta', title:'庫塔悠閒日：飯店設施＋周邊逛街', items:[
+    {time:'上午', title:'飯店泳池／水上設施', desc:'Hard Rock Hotel 大型泳池、兒童戲水池，不用移動、大人小孩都能放鬆', tip:'💡 原烏布行程已取消，改為輕鬆日，讓長輩小孩有喘息時間'},
+    {time:'午餐', title:'飯店內用餐', desc:'Starz Diner 或其他飯店餐廳，方便12人一起用餐'},
+    {time:'下午', title:'庫塔周邊走走逛逛', desc:'Beachwalk Shopping Center 購物、Kuta Square、Kuta Beach 散步', map:'Beachwalk Shopping Center Kuta'},
+    {time:'傍晚', title:'Kuta Beach 看夕陽', desc:'飯店步行1分鐘即達海灘', map:'Kuta Beach'},
+    {time:'晚餐', title:'庫塔周邊自由用餐', desc:'步行可達，不需包車'}
   ]},
   { n:4, date:'7/28（二）', zone:'transfer', title:'轉場藍夢島 Nusa Lembongan', items:[
     {time:'上午', title:'飯店退房', desc:'Check-out 12:00前，行李打包'},
