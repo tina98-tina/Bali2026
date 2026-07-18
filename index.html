@@ -9,25 +9,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --jungle-deep:#0B2818;
-    --jungle-mid:#12331F;
-    --jungle-card:#173E28;
-    --coral:#FF6F4C;
-    --coral-dim:#E85D3B;
-    --gold:#E8A33D;
-    --olive:#8FA05A;
-    --teal:#2AA8A0;
-    --terracotta:#C2571B;
-    --sand:#F7ECD9;
-    --sand-dim:#CBBFA4;
-    --mist:#7FB5AC;
-    --line:rgba(247,236,217,0.12);
+    --bg:#FFF8EC;
+    --card:#FFFFFF;
+    --coral:#FF6F61;
+    --coral-dim:#FF8A7A;
+    --sunny:#FFC43D;
+    --olive:#8BC34A;
+    --turquoise:#17C3B2;
+    --terracotta:#FF8C42;
+    --pink:#FF5D8F;
+    --sky:#4EA8DE;
+    --text:#2B3A55;
+    --text-dim:#8087A0;
+    --line:rgba(43,58,85,0.10);
+    /* legacy aliases kept so component rules below stay short */
+    --jungle-deep:var(--bg);
+    --jungle-card:var(--card);
+    --gold:var(--sunny);
+    --teal:var(--turquoise);
+    --sand:var(--text);
+    --sand-dim:var(--text-dim);
+    --mist:#4FB6AC;
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
   html,body{margin:0;padding:0;}
   body{
-    background:var(--jungle-deep);
-    color:var(--sand);
+    background:var(--bg);
+    color:var(--text);
     font-family:'Work Sans',sans-serif;
     min-height:100vh;
     padding-bottom:78px;
@@ -40,179 +48,184 @@
     position:relative;
     padding:34px 20px 26px;
     overflow:hidden;
-    background:
-      radial-gradient(120% 90% at 15% -10%, rgba(255,111,76,0.35), transparent 60%),
-      radial-gradient(100% 80% at 100% 0%, rgba(42,168,160,0.25), transparent 55%),
-      var(--jungle-deep);
-    border-bottom:1px solid var(--line);
+    background:linear-gradient(135deg, #0FA3A3 0%, #17C3B2 45%, #4EA8DE 100%);
+    color:#FFFFFF;
   }
-  .hero svg.frond{position:absolute; opacity:0.15;}
+  .hero svg.frond{position:absolute; opacity:0.22;}
   .hero .f1{top:-30px; right:-40px; width:220px; transform:rotate(15deg);}
   .hero .f2{bottom:-50px; left:-50px; width:180px; transform:rotate(-25deg) scaleX(-1);}
   .eyebrow{
     font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
-    color:var(--mist); margin-bottom:10px; position:relative; z-index:1;
+    color:rgba(255,255,255,0.9); margin-bottom:10px; position:relative; z-index:1;
   }
   .hero h1{
     font-size:30px; font-weight:600; margin:0 0 6px; line-height:1.25;
-    position:relative; z-index:1;
+    position:relative; z-index:1; color:#FFFFFF; text-shadow:0 2px 10px rgba(0,0,0,0.08);
   }
   .hero .sub{
-    color:var(--sand-dim); font-size:14px; position:relative; z-index:1;
+    color:rgba(255,255,255,0.92); font-size:14px; position:relative; z-index:1;
   }
   .hero .stats{
     display:flex; gap:10px; margin-top:18px; position:relative; z-index:1;
   }
   .stat-chip{
-    background:rgba(247,236,217,0.08);
-    border:1px solid var(--line);
+    background:rgba(255,255,255,0.22);
+    border:1px solid rgba(255,255,255,0.35);
     border-radius:12px;
     padding:8px 12px;
     font-size:12px;
+    color:#FFFFFF;
   }
-  .stat-chip b{display:block; font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:var(--gold);}
+  .stat-chip b{display:block; font-family:'Fraunces',serif; font-size:17px; font-weight:700; color:#FFFFFF;}
 
   /* journey line legend on hero */
   .zones{display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:16px; position:relative; z-index:1;}
-  .zone-tag{display:flex; align-items:center; gap:5px; font-size:11px; color:var(--sand-dim);}
-  .zone-dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+  .zone-tag{display:flex; align-items:center; gap:5px; font-size:11px; color:rgba(255,255,255,0.95); font-weight:500;}
+  .zone-dot{width:9px; height:9px; border-radius:50%; flex-shrink:0; box-shadow:0 0 0 2px rgba(255,255,255,0.5);}
 
   /* ---------- TABS CONTENT ---------- */
   .view{display:none; padding:20px 16px 30px;}
   .view.active{display:block;}
 
   .section-title{
-    font-family:'Fraunces',serif; font-weight:600; font-size:20px;
-    margin:0 0 4px;
+    font-family:'Fraunces',serif; font-weight:700; font-size:20px;
+    margin:0 0 4px; color:var(--text);
   }
-  .section-desc{color:var(--sand-dim); font-size:13px; margin:0 0 18px; line-height:1.6;}
+  .section-desc{color:var(--text-dim); font-size:13px; margin:0 0 18px; line-height:1.6;}
 
   /* ---- Itinerary (journey line) ---- */
   .journey{position:relative; padding-left:26px;}
   .journey::before{
-    content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px;
-    background:linear-gradient(to bottom, var(--coral), var(--teal) 55%, var(--gold));
-    opacity:0.5;
+    content:""; position:absolute; left:9px; top:6px; bottom:6px; width:3px; border-radius:3px;
+    background:linear-gradient(to bottom, var(--coral), var(--sunny) 35%, var(--turquoise) 70%, var(--pink));
+    opacity:0.9;
   }
   .day-block{position:relative; margin-bottom:26px;}
   .day-dot{
-    position:absolute; left:-26px; top:2px; width:20px; height:20px; border-radius:50%;
+    position:absolute; left:-26px; top:2px; width:22px; height:22px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
-    font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; color:var(--jungle-deep);
-    border:3px solid var(--jungle-deep);
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; color:#FFFFFF;
+    border:3px solid var(--bg); box-shadow:0 2px 6px rgba(0,0,0,0.15);
   }
   .day-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:4px; cursor:pointer;}
-  .day-head h3{font-family:'Fraunces',serif; font-size:17px; font-weight:600; margin:0;}
+  .day-head h3{font-family:'Fraunces',serif; font-size:17px; font-weight:700; margin:0; color:var(--text);}
   .day-head .zone-label{
     font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; font-family:'JetBrains Mono',monospace;
-    padding:3px 8px; border-radius:20px; white-space:nowrap; margin-left:8px;
+    padding:3px 8px; border-radius:20px; white-space:nowrap; margin-left:8px; font-weight:700;
   }
-  .day-date{font-size:12px; color:var(--sand-dim); margin-bottom:10px;}
+  .day-date{font-size:12px; color:var(--text-dim); margin-bottom:10px;}
   .day-body{
-    background:var(--jungle-card); border:1px solid var(--line); border-radius:14px;
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
     padding:4px 14px; overflow:hidden; max-height:0; transition:max-height 0.35s ease, padding 0.35s ease;
+    box-shadow:0 2px 10px rgba(43,58,85,0.05);
   }
   .day-block.open .day-body{max-height:2000px; padding:12px 14px 16px;}
   .day-block.open .chevron{transform:rotate(180deg);}
-  .chevron{transition:transform 0.3s ease; color:var(--sand-dim); font-size:12px;}
+  .chevron{transition:transform 0.3s ease; color:var(--text-dim); font-size:12px;}
 
   .item{display:flex; gap:12px; padding:9px 0; border-bottom:1px dashed var(--line);}
   .item:last-child{border-bottom:none;}
-  .item .time{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--gold); min-width:44px; padding-top:2px;}
+  .item .time{font-family:'JetBrains Mono',monospace; font-size:11.5px; font-weight:700; color:var(--coral); min-width:44px; padding-top:2px;}
   .item .content{flex:1;}
-  .item .title{font-size:13.5px; font-weight:600; margin-bottom:2px;}
-  .item .desc{font-size:12.5px; color:var(--sand-dim); line-height:1.55;}
-  .item .tip{font-size:11.5px; color:var(--mist); margin-top:4px; line-height:1.5;}
+  .item .title{font-size:13.5px; font-weight:700; margin-bottom:2px; color:var(--text);}
+  .item .desc{font-size:12.5px; color:var(--text-dim); line-height:1.55;}
+  .item .tip{font-size:11.5px; color:#12968A; margin-top:4px; line-height:1.5;}
   .maplink{
     display:inline-flex; align-items:center; gap:4px; margin-top:6px;
-    font-size:11.5px; color:var(--teal); text-decoration:none; border:1px solid rgba(42,168,160,0.35);
+    font-size:11.5px; font-weight:600; color:#0E8A80; text-decoration:none; border:1px solid rgba(23,195,178,0.4);
+    background:rgba(23,195,178,0.08);
     padding:4px 9px; border-radius:20px;
   }
-  .maplink:active{background:rgba(42,168,160,0.15);}
+  .maplink:active{background:rgba(23,195,178,0.2);}
 
   /* ---- Transport tab ---- */
   .card{
-    background:var(--jungle-card); border:1px solid var(--line); border-radius:14px;
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
     padding:16px; margin-bottom:14px;
+    box-shadow:0 2px 10px rgba(43,58,85,0.05);
   }
-  .card h4{font-family:'Fraunces',serif; font-size:15.5px; margin:0 0 8px; display:flex; align-items:center; gap:8px;}
-  .card p{font-size:13px; color:var(--sand-dim); line-height:1.65; margin:0;}
+  .card h4{font-family:'Fraunces',serif; font-size:15.5px; margin:0 0 8px; display:flex; align-items:center; gap:8px; color:var(--text);}
+  .card p{font-size:13px; color:var(--text-dim); line-height:1.65; margin:0;}
   .badge{
-    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10.5px;
-    background:rgba(255,111,76,0.15); color:var(--coral); padding:2px 8px; border-radius:20px;
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700;
+    background:rgba(255,111,97,0.15); color:var(--coral); padding:2px 8px; border-radius:20px;
   }
   table.tt{width:100%; border-collapse:collapse; margin-top:10px; font-size:12.5px;}
-  table.tt th{text-align:left; color:var(--mist); font-weight:500; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; padding-bottom:6px;}
-  table.tt td{padding:7px 0; border-top:1px solid var(--line); color:var(--sand-dim);}
-  table.tt td.d{color:var(--sand); font-weight:600; font-family:'JetBrains Mono',monospace; font-size:11.5px;}
+  table.tt th{text-align:left; color:#12968A; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; padding-bottom:6px;}
+  table.tt td{padding:7px 0; border-top:1px solid var(--line); color:var(--text-dim);}
+  table.tt td.d{color:var(--text); font-weight:700; font-family:'JetBrains Mono',monospace; font-size:11.5px;}
 
   /* ---- Lodging ---- */
   .hotel-card{
-    background:var(--jungle-card); border:1px solid var(--line); border-radius:16px;
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
     padding:18px; margin-bottom:16px; position:relative; overflow:hidden;
+    box-shadow:0 2px 12px rgba(43,58,85,0.06);
   }
   .hotel-card::before{
-    content:""; position:absolute; top:0; left:0; width:4px; height:100%;
+    content:""; position:absolute; top:0; left:0; width:5px; height:100%;
   }
   .hotel-card.h1::before{background:var(--coral);}
-  .hotel-card.h2::before{background:var(--teal);}
-  .hotel-card .stay{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold); margin-bottom:6px;}
-  .hotel-card h4{font-family:'Fraunces',serif; font-size:17px; margin:0 0 6px;}
-  .hotel-card .addr{font-size:12.5px; color:var(--sand-dim); margin-bottom:12px; line-height:1.5;}
+  .hotel-card.h2::before{background:var(--turquoise);}
+  .hotel-card .stay{font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--terracotta); margin-bottom:6px;}
+  .hotel-card h4{font-family:'Fraunces',serif; font-size:17px; margin:0 0 6px; color:var(--text);}
+  .hotel-card .addr{font-size:12.5px; color:var(--text-dim); margin-bottom:12px; line-height:1.5;}
   .hotel-card .meta{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;}
-  .meta-chip{font-size:11px; background:rgba(247,236,217,0.07); border:1px solid var(--line); padding:4px 9px; border-radius:20px; color:var(--sand-dim);}
+  .meta-chip{font-size:11px; font-weight:500; background:#FFF1DC; border:1px solid var(--line); padding:4px 9px; border-radius:20px; color:var(--text);}
 
   /* ---- Luggage checklist ---- */
-  .cat-title{font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--mist); margin:18px 0 8px; font-family:'JetBrains Mono',monospace;}
+  .cat-title{font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:#0E8A80; margin:18px 0 8px; font-family:'JetBrains Mono',monospace; font-weight:700;}
   .check-item{
     display:flex; align-items:center; gap:12px; padding:11px 14px;
-    background:var(--jungle-card); border:1px solid var(--line); border-radius:12px; margin-bottom:8px;
+    background:var(--card); border:1px solid var(--line); border-radius:12px; margin-bottom:8px;
+    box-shadow:0 1px 6px rgba(43,58,85,0.04);
   }
   .check-item .box{
-    width:20px; height:20px; border-radius:6px; border:2px solid var(--mist); flex-shrink:0;
-    display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--jungle-deep);
+    width:20px; height:20px; border-radius:6px; border:2px solid var(--turquoise); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:12px; color:#FFFFFF;
   }
-  .check-item.done .box{background:var(--teal); border-color:var(--teal);}
+  .check-item.done .box{background:var(--turquoise); border-color:var(--turquoise);}
   .check-item.done .box::after{content:"✓";}
-  .check-item span.label{font-size:13.5px;}
-  .check-item.done span.label{color:var(--sand-dim); text-decoration:line-through;}
-  .progress-wrap{background:var(--jungle-card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:18px;}
-  .progress-bar{height:8px; background:rgba(247,236,217,0.1); border-radius:10px; overflow:hidden; margin-top:8px;}
-  .progress-fill{height:100%; background:linear-gradient(90deg, var(--coral), var(--gold)); width:0%; transition:width 0.3s ease;}
+  .check-item span.label{font-size:13.5px; color:var(--text);}
+  .check-item.done span.label{color:var(--text-dim); text-decoration:line-through;}
+  .progress-wrap{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:18px; box-shadow:0 2px 10px rgba(43,58,85,0.05);}
+  .progress-bar{height:8px; background:rgba(43,58,85,0.08); border-radius:10px; overflow:hidden; margin-top:8px;}
+  .progress-fill{height:100%; background:linear-gradient(90deg, var(--coral), var(--sunny)); width:0%; transition:width 0.3s ease;}
 
   /* ---- Budget ---- */
-  .rate-note{font-size:12px; color:var(--mist); margin-bottom:16px; line-height:1.6;}
+  .rate-note{font-size:12px; color:#0E8A80; margin-bottom:16px; line-height:1.6;}
   .budget-row{
     display:flex; justify-content:space-between; align-items:center;
-    padding:13px 15px; background:var(--jungle-card); border:1px solid var(--line);
+    padding:13px 15px; background:var(--card); border:1px solid var(--line);
     border-radius:12px; margin-bottom:9px;
+    box-shadow:0 1px 8px rgba(43,58,85,0.04);
   }
-  .budget-row .label{font-size:13px;}
-  .budget-row .label small{display:block; color:var(--sand-dim); font-size:11px; margin-top:2px;}
+  .budget-row .label{font-size:13px; color:var(--text);}
+  .budget-row .label small{display:block; color:var(--text-dim); font-size:11px; margin-top:2px;}
   .budget-row .amt{text-align:right; font-family:'JetBrains Mono',monospace;}
-  .budget-row .amt .idr{font-size:12.5px; color:var(--gold);}
-  .budget-row .amt .twd{font-size:11px; color:var(--sand-dim); margin-top:2px;}
+  .budget-row .amt .idr{font-size:12.5px; font-weight:700; color:var(--terracotta);}
+  .budget-row .amt .twd{font-size:11px; color:var(--text-dim); margin-top:2px;}
 
   /* ---------- BOTTOM NAV ---------- */
   nav.bottom{
     position:fixed; bottom:0; left:0; right:0;
-    background:rgba(11,40,24,0.92); backdrop-filter:blur(10px);
+    background:rgba(255,255,255,0.94); backdrop-filter:blur(10px);
     border-top:1px solid var(--line);
     display:flex; justify-content:space-around; padding:8px 4px calc(8px + env(safe-area-inset-bottom));
     z-index:10;
+    box-shadow:0 -2px 14px rgba(43,58,85,0.06);
   }
   nav.bottom button{
-    background:none; border:none; color:var(--sand-dim); font-family:'Work Sans',sans-serif;
-    display:flex; flex-direction:column; align-items:center; gap:3px; font-size:10.5px;
+    background:none; border:none; color:var(--text-dim); font-family:'Work Sans',sans-serif;
+    display:flex; flex-direction:column; align-items:center; gap:3px; font-size:10.5px; font-weight:500;
     padding:4px 6px; flex:1;
   }
-  nav.bottom button svg{width:20px; height:20px; stroke:var(--sand-dim); fill:none; stroke-width:1.8;}
-  nav.bottom button.active{color:var(--coral);}
+  nav.bottom button svg{width:20px; height:20px; stroke:var(--text-dim); fill:none; stroke-width:1.8;}
+  nav.bottom button.active{color:var(--coral); font-weight:700;}
   nav.bottom button.active svg{stroke:var(--coral);}
 
   @media(min-width:480px){
-    body{max-width:480px; margin:0 auto; box-shadow:0 0 40px rgba(0,0,0,0.4);}
+    body{max-width:480px; margin:0 auto; box-shadow:0 0 40px rgba(43,58,85,0.15);}
     nav.bottom{max-width:480px; margin:0 auto;}
   }
 </style>
@@ -220,8 +233,8 @@
 <body>
 
 <div class="hero">
-  <svg class="frond f1" viewBox="0 0 100 100"><path d="M50 90 Q20 60 10 10 Q50 30 60 90 Z" fill="#E8A33D"/></svg>
-  <svg class="frond f2" viewBox="0 0 100 100"><path d="M50 90 Q20 60 10 10 Q50 30 60 90 Z" fill="#2AA8A0"/></svg>
+  <svg class="frond f1" viewBox="0 0 100 100"><path d="M50 90 Q20 60 10 10 Q50 30 60 90 Z" fill="#FFFFFF" opacity="0.5"/></svg>
+  <svg class="frond f2" viewBox="0 0 100 100"><path d="M50 90 Q20 60 10 10 Q50 30 60 90 Z" fill="#FFFFFF" opacity="0.5"/></svg>
   <div class="eyebrow">Family Trip · 峇里島</div>
   <h1 class="display">Family in Bali 2026</h1>
   <div class="sub">7月25日（六）— 8月1日（六）· 8天7夜 · 12人同行</div>
@@ -231,10 +244,10 @@
     <div class="stat-chip">駐點<b>4區</b></div>
   </div>
   <div class="zones">
-    <div class="zone-tag"><span class="zone-dot" style="background:#FF6F4C"></span>庫塔 Kuta</div>
-    <div class="zone-tag"><span class="zone-dot" style="background:#C2571B"></span>南灣 Uluwatu/金巴蘭</div>
-    <div class="zone-tag"><span class="zone-dot" style="background:#8FA05A"></span>烏布 Ubud</div>
-    <div class="zone-tag"><span class="zone-dot" style="background:#2AA8A0"></span>藍夢島 Lembongan</div>
+    <div class="zone-tag"><span class="zone-dot" style="background:#FF6F61"></span>庫塔 Kuta</div>
+    <div class="zone-tag"><span class="zone-dot" style="background:#FF8C42"></span>南灣 Uluwatu/金巴蘭</div>
+    <div class="zone-tag"><span class="zone-dot" style="background:#8BC34A"></span>烏布 Ubud</div>
+    <div class="zone-tag"><span class="zone-dot" style="background:#17C3B2"></span>藍夢島 Lembongan</div>
   </div>
 </div>
 
@@ -286,18 +299,36 @@
       <span class="meta-chip">庫塔區</span>
     </div>
     <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Hard+Rock+Hotel+Bali" target="_blank">📍 開啟 Google Map 導航</a>
+    <div class="cat-title" style="margin:14px 0 6px;">附近景點</div>
+    <div class="meta">
+      <span class="meta-chip">🏖️ Kuta Beach（步行1分鐘）</span>
+      <span class="meta-chip">💦 Waterbom Bali 水上樂園（約1.3km）</span>
+      <span class="meta-chip">🛍️ Beachwalk 購物中心（步行可達）</span>
+      <span class="meta-chip">🛍️ Kuta Square</span>
+    </div>
   </div>
 
   <div class="hotel-card h2">
-    <div class="stay">7/28 → 8/1 · 4晚</div>
+    <div class="stay">7/28 14:00 → 8/1 12:00 · 4晚</div>
     <h4>The Tamarind Resort - Nusa Lembongan</h4>
     <div class="addr">羅望子度假村・藍夢島 · No.1 Jl. Jungutbatu, 峇里島, 印尼 80771</div>
     <div class="meta">
+      <span class="meta-chip">✅ 已確認</span>
+      <span class="meta-chip">2 x 3-Bedroom Villa</span>
+      <span class="meta-chip">7位大人・5位兒童</span>
       <span class="meta-chip">⭐️⭐️⭐️⭐️⭐️</span>
-      <span class="meta-chip">藍夢島</span>
       <span class="meta-chip">📞 +62 366 5437888</span>
     </div>
     <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=The+Tamarind+Resort+Nusa+Lembongan" target="_blank">📍 開啟 Google Map 導航</a>
+    <div class="cat-title" style="margin:14px 0 6px;">附近景點</div>
+    <div class="meta">
+      <span class="meta-chip">🏖️ Jungutbatu Beach（度假村旁）</span>
+      <span class="meta-chip">🌅 Mushroom Bay Beach（車程約3分）</span>
+      <span class="meta-chip">🏖️ Dream Beach（車程約4分）</span>
+      <span class="meta-chip">🌊 Devil's Tears（車程約4分）</span>
+      <span class="meta-chip">🌳 Mangrove Forest（約1.3km）</span>
+      <span class="meta-chip">🏠 Gala-Gala 地下屋（車程約3分）</span>
+    </div>
   </div>
 </div>
 
@@ -350,12 +381,12 @@
 
 <script>
 const ZONES = {
-  kuta:{label:'庫塔', color:'#FF6F4C'},
-  uluwatu:{label:'南灣', color:'#C2571B'},
-  ubud:{label:'烏布', color:'#8FA05A'},
-  transfer:{label:'轉場', color:'#E8A33D'},
-  lembongan:{label:'藍夢島', color:'#2AA8A0'},
-  depart:{label:'賦歸', color:'#E8A33D'}
+  kuta:{label:'庫塔', color:'#FF6F61'},
+  uluwatu:{label:'南灣', color:'#FF8C42'},
+  ubud:{label:'烏布', color:'#8BC34A'},
+  transfer:{label:'轉場', color:'#FFC43D'},
+  lembongan:{label:'藍夢島', color:'#17C3B2'},
+  depart:{label:'賦歸', color:'#FF5D8F'}
 };
 
 const DAYS = [
@@ -365,8 +396,8 @@ const DAYS = [
     {time:'15:00', title:'包車接機 → 飯店', desc:'車程約20-25分鐘'},
     {time:'15:00', title:'Hard Rock Hotel Bali Check-in', desc:'已確認訂單，3筆訂單／4間房', map:'Hard Rock Hotel Bali'},
     {time:'傍晚', title:'飯店泳池／戲水池', desc:'放鬆調時差，適合小孩'},
-    {time:'晚餐', title:'Made\'s Warung 或飯店 Starz Diner', desc:'庫塔廣場周邊，步行可達不需包車', map:"Made's Warung Kuta"},
-    {time:'晚餐備案', title:'Warung Nia Balinese Food & Pork Ribs', desc:'水明漾（Seminyak）人氣道地峇里料理，招牌烤肋排，離庫塔車程約10-15分', mapDirect:'https://maps.app.goo.gl/jLmq1EC426YRXg469?g_st=ic'}
+    {time:'晚餐', title:'Warung Nia Balinese Food & Pork Ribs', desc:'水明漾（Seminyak）人氣道地峇里料理，招牌烤肋排，離庫塔車程約10-15分', tip:'📌 已訂位 18:00，12位，尚待餐廳確認', mapDirect:'https://maps.app.goo.gl/jLmq1EC426YRXg469?g_st=ic'},
+    {time:'備案', title:'Made\'s Warung 或飯店 Starz Diner', desc:'若訂位有變動，庫塔廣場周邊步行可達不需包車', map:"Made's Warung Kuta"}
   ]},
   { n:2, date:'7/26（日）', zone:'uluwatu', title:'南灣一日：烏魯瓦圖＋金巴蘭', items:[
     {time:'09:00', title:'包車出發', desc:'車程約40-50分至烏魯瓦圖'},
@@ -388,7 +419,7 @@ const DAYS = [
     {time:'上午', title:'飯店退房', desc:'Check-out 12:00前，行李打包'},
     {time:'10:30', title:'包車前往 Sanur 港口', desc:'車程約30-40分'},
     {time:'12:00', title:'快艇 Sanur → Lembongan', desc:'船程約30-40分，建議整團訂同班船', tip:'💡 船身較小會晃，建議坐中段，暈船藥備用'},
-    {time:'13:30', title:'抵達藍夢島，接駁飯店', desc:'The Tamarind Resort Check-in', map:'The Tamarind Resort Nusa Lembongan'},
+    {time:'14:00', title:'抵達藍夢島，接駁飯店', desc:'The Tamarind Resort Check-in（2 x 3-Bedroom Villa）', map:'The Tamarind Resort Nusa Lembongan'},
     {time:'傍晚', title:'Mushroom Bay 散步看夕陽', desc:'', map:'Mushroom Bay Beach'}
   ]},
   { n:5, date:'7/29（三）', zone:'lembongan', title:'藍夢島探索', items:[
@@ -424,10 +455,11 @@ const DAYS = [
 ];
 
 const CHECKLIST = {
-  '證件與文件':['護照（效期6個月以上）','機票電子憑證','飯店訂單截圖','旅平險保單'],
-  '個人防護':['防曬乳','帽子／陽傘','泳衣（每天都可能用到）','暈船藥（快艇搭乘前）','常備藥品（腸胃藥、退燒藥）'],
+  '證件與財務':['護照（效期6個月以上）','機票電子憑證','落地簽影本','外幣消費信用卡','訂飯店信用卡本卡','外幣（美金、印尼盾）'],
+  '個人防護與保健':['防曬乳','帽子／陽傘','泳衣（每天都可能用到）','防蚊液','太陽眼鏡','常備藥品（大人小孩腸胃藥、暈船藥、退燒藥、一般感冒用藥）','耳溫槍','個人保健食品（益生菌、維他命等）'],
   '電源與網路':['轉接頭（印尼圓形雙孔 220V）','行動電源','eSIM 或 SIM卡'],
-  '兒童用品':['泳圈／蛙鞋','防曬水母衣','小孩常備藥','小玩具／平板（長途車程用）'],
+  '盥洗清潔用品':['牙膏牙刷','酒精噴霧','濕紙巾衛生紙','洗沐用品（洗面乳、髮品）'],
+  '兒童用品':['泳圈／蛙鞋','防曬水母衣','小玩具／平板（長途車程用）'],
   '其他':['輕便雨具（雨季偶陣雨）','購物袋／環保袋']
 };
 
