@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>峇里島家族行程 · 7/25–8/1</title>
+<title>Family in Bali 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -223,7 +223,7 @@
   <svg class="frond f1" viewBox="0 0 100 100"><path d="M50 90 Q20 60 10 10 Q50 30 60 90 Z" fill="#E8A33D"/></svg>
   <svg class="frond f2" viewBox="0 0 100 100"><path d="M50 90 Q20 60 10 10 Q50 30 60 90 Z" fill="#2AA8A0"/></svg>
   <div class="eyebrow">Family Trip · 峇里島</div>
-  <h1 class="display">峇里島家族行程</h1>
+  <h1 class="display">Family in Bali 2026</h1>
   <div class="sub">7月25日（六）— 8月1日（六）· 8天7夜 · 12人同行</div>
   <div class="stats">
     <div class="stat-chip">天數<b>8天7夜</b></div>
@@ -365,7 +365,8 @@ const DAYS = [
     {time:'15:00', title:'包車接機 → 飯店', desc:'車程約20-25分鐘'},
     {time:'15:00', title:'Hard Rock Hotel Bali Check-in', desc:'已確認訂單，3筆訂單／4間房', map:'Hard Rock Hotel Bali'},
     {time:'傍晚', title:'飯店泳池／戲水池', desc:'放鬆調時差，適合小孩'},
-    {time:'晚餐', title:'Made\'s Warung 或飯店 Starz Diner', desc:'庫塔廣場周邊，步行可達不需包車', map:"Made's Warung Kuta"}
+    {time:'晚餐', title:'Made\'s Warung 或飯店 Starz Diner', desc:'庫塔廣場周邊，步行可達不需包車', map:"Made's Warung Kuta"},
+    {time:'晚餐備案', title:'Warung Nia Balinese Food & Pork Ribs', desc:'水明漾（Seminyak）人氣道地峇里料理，招牌烤肋排，離庫塔車程約10-15分', mapDirect:'https://maps.app.goo.gl/jLmq1EC426YRXg469?g_st=ic'}
   ]},
   { n:2, date:'7/26（日）', zone:'uluwatu', title:'南灣一日：烏魯瓦圖＋金巴蘭', items:[
     {time:'09:00', title:'包車出發', desc:'車程約40-50分至烏魯瓦圖'},
@@ -463,6 +464,7 @@ function renderJourney(){
           ${it.desc ? `<div class="desc">${it.desc}</div>`:''}
           ${it.tip ? `<div class="tip">${it.tip}</div>`:''}
           ${it.map ? `<a class="maplink" href="${mapUrl(it.map)}" target="_blank">📍 開啟地圖</a>`:''}
+          ${it.mapDirect ? `<a class="maplink" href="${it.mapDirect}" target="_blank">📍 開啟地圖</a>`:''}
         </div>
       </div>`).join('');
     const noteHtml = d.note ? `<div class="item"><div class="content"><div class="tip">${d.note}</div></div></div>` : '';
