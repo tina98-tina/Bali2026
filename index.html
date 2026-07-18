@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>峇里島家族行程 · 7/25–8/1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --jungle-deep:#0B2818;
+    --jungle-mid:#12331F;
+    --jungle-card:#173E28;
+    --coral:#FF6F4C;
+    --coral-dim:#E85D3B;
+    --gold:#E8A33D;
+    --olive:#8FA05A;
+    --teal:#2AA8A0;
+    --terracotta:#C2571B;
+    --sand:#F7ECD9;
+    --sand-dim:#CBBFA4;
+    --mist:#7FB5AC;
+    --line:rgba(247,236,217,0.12);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--jungle-deep);
+    color:var(--sand);
+    font-family:'Work Sans',sans-serif;
+    min-height:100vh;
+    padding-bottom:78px;
+  }
+  .display{font-family:'Fraunces',serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:34px 20px 26px;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 15% -10%, rgba(255,111,76,0.35), transparent 60%),
+      radial-gradient(100% 80% at 100% 0%, rgba(42,168,160,0.25), transparent 55%),
+      var(--jungle-deep);
+    border-bottom:1px solid var(--line);
+  }
+  .hero svg.frond{position:absolute; opacity:0.15;}
+  .hero .f1{top:-30px; right:-40px; width:220px; transform:rotate(15deg);}
+  .hero .f2{bottom:-50px; left:-50px; width:180px; transform:rotate(-25deg) scaleX(-1);}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--mist); margin-bottom:10px; position:relative; z-index:1;
+  }
+  .hero h1{
+    font-size:30px; font-weight:600; margin:0 0 6px; line-height:1.25;
+    position:relative; z-index:1;
+  }
+  .hero .sub{
+    color:var(--sand-dim); font-size:14px; position:relative; z-index:1;
+  }
+  .hero .stats{
+    display:flex; gap:10px; margin-top:18px; position:relative; z-index:1;
+  }
+  .stat-chip{
+    background:rgba(247,236,217,0.08);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:8px 12px;
+    font-size:12px;
+  }
+  .stat-chip b{display:block; font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:var(--gold);}
+
+  /* journey line legend on hero */
+  .zones{display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:16px; position:relative; z-index:1;}
+  .zone-tag{display:flex; align-items:center; gap:5px; font-size:11px; color:var(--sand-dim);}
+  .zone-dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+
+  /* ---------- TABS CONTENT ---------- */
+  .view{display:none; padding:20px 16px 30px;}
+  .view.active{display:block;}
+
+  .section-title{
+    font-family:'Fraunces',serif; font-weight:600; font-size:20px;
+    margin:0 0 4px;
+  }
+  .section-desc{color:var(--sand-dim); font-size:13px; margin:0 0 18px; line-height:1.6;}
+
+  /* ---- Itinerary (journey line) ---- */
+  .journey{position:relative; padding-left:26px;}
+  .journey::before{
+    content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(to bottom, var(--coral), var(--teal) 55%, var(--gold));
+    opacity:0.5;
+  }
+  .day-block{position:relative; margin-bottom:26px;}
+  .day-dot{
+    position:absolute; left:-26px; top:2px; width:20px; height:20px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; color:var(--jungle-deep);
+    border:3px solid var(--jungle-deep);
+  }
+  .day-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:4px; cursor:pointer;}
+  .day-head h3{font-family:'Fraunces',serif; font-size:17px; font-weight:600; margin:0;}
+  .day-head .zone-label{
+    font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; font-family:'JetBrains Mono',monospace;
+    padding:3px 8px; border-radius:20px; white-space:nowrap; margin-left:8px;
+  }
+  .day-date{font-size:12px; color:var(--sand-dim); margin-bottom:10px;}
+  .day-body{
+    background:var(--jungle-card); border:1px solid var(--line); border-radius:14px;
+    padding:4px 14px; overflow:hidden; max-height:0; transition:max-height 0.35s ease, padding 0.35s ease;
+  }
+  .day-block.open .day-body{max-height:2000px; padding:12px 14px 16px;}
+  .day-block.open .chevron{transform:rotate(180deg);}
+  .chevron{transition:transform 0.3s ease; color:var(--sand-dim); font-size:12px;}
+
+  .item{display:flex; gap:12px; padding:9px 0; border-bottom:1px dashed var(--line);}
+  .item:last-child{border-bottom:none;}
+  .item .time{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--gold); min-width:44px; padding-top:2px;}
+  .item .content{flex:1;}
+  .item .title{font-size:13.5px; font-weight:600; margin-bottom:2px;}
+  .item .desc{font-size:12.5px; color:var(--sand-dim); line-height:1.55;}
+  .item .tip{font-size:11.5px; color:var(--mist); margin-top:4px; line-height:1.5;}
+  .maplink{
+    display:inline-flex; align-items:center; gap:4px; margin-top:6px;
+    font-size:11.5px; color:var(--teal); text-decoration:none; border:1px solid rgba(42,168,160,0.35);
+    padding:4px 9px; border-radius:20px;
+  }
+  .maplink:active{background:rgba(42,168,160,0.15);}
+
+  /* ---- Transport tab ---- */
+  .card{
+    background:var(--jungle-card); border:1px solid var(--line); border-radius:14px;
+    padding:16px; margin-bottom:14px;
+  }
+  .card h4{font-family:'Fraunces',serif; font-size:15.5px; margin:0 0 8px; display:flex; align-items:center; gap:8px;}
+  .card p{font-size:13px; color:var(--sand-dim); line-height:1.65; margin:0;}
+  .badge{
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10.5px;
+    background:rgba(255,111,76,0.15); color:var(--coral); padding:2px 8px; border-radius:20px;
+  }
+  table.tt{width:100%; border-collapse:collapse; margin-top:10px; font-size:12.5px;}
+  table.tt th{text-align:left; color:var(--mist); font-weight:500; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; padding-bottom:6px;}
+  table.tt td{padding:7px 0; border-top:1px solid var(--line); color:var(--sand-dim);}
+  table.tt td.d{color:var(--sand); font-weight:600; font-family:'JetBrains Mono',monospace; font-size:11.5px;}
+
+  /* ---- Lodging ---- */
+  .hotel-card{
+    background:var(--jungle-card); border:1px solid var(--line); border-radius:16px;
+    padding:18px; margin-bottom:16px; position:relative; overflow:hidden;
+  }
+  .hotel-card::before{
+    content:""; position:absolute; top:0; left:0; width:4px; height:100%;
+  }
+  .hotel-card.h1::before{background:var(--coral);}
+  .hotel-card.h2::before{background:var(--teal);}
+  .hotel-card .stay{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold); margin-bottom:6px;}
+  .hotel-card h4{font-family:'Fraunces',serif; font-size:17px; margin:0 0 6px;}
+  .hotel-card .addr{font-size:12.5px; color:var(--sand-dim); margin-bottom:12px; line-height:1.5;}
+  .hotel-card .meta{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;}
+  .meta-chip{font-size:11px; background:rgba(247,236,217,0.07); border:1px solid var(--line); padding:4px 9px; border-radius:20px; color:var(--sand-dim);}
+
+  /* ---- Luggage checklist ---- */
+  .cat-title{font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--mist); margin:18px 0 8px; font-family:'JetBrains Mono',monospace;}
+  .check-item{
+    display:flex; align-items:center; gap:12px; padding:11px 14px;
+    background:var(--jungle-card); border:1px solid var(--line); border-radius:12px; margin-bottom:8px;
+  }
+  .check-item .box{
+    width:20px; height:20px; border-radius:6px; border:2px solid var(--mist); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--jungle-deep);
+  }
+  .check-item.done .box{background:var(--teal); border-color:var(--teal);}
+  .check-item.done .box::after{content:"✓";}
+  .check-item span.label{font-size:13.5px;}
+  .check-item.done span.label{color:var(--sand-dim); text-decoration:line-through;}
+  .progress-wrap{background:var(--jungle-card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:18px;}
+  .progress-bar{height:8px; background:rgba(247,236,217,0.1); border-radius:10px; overflow:hidden; margin-top:8px;}
+  .progress-fill{height:100%; background:linear-gradient(90deg, var(--coral), var(--gold)); width:0%; transition:width 0.3s ease;}
+
+  /* ---- Budget ---- */
+  .rate-note{font-size:12px; color:var(--mist); margin-bottom:16px; line-height:1.6;}
+  .budget-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:13px 15px; background:var(--jungle-card); border:1px solid var(--line);
+    border-radius:12px; margin-bottom:9px;
+  }
+  .budget-row .label{font-size:13px;}
+  .budget-row .label small{display:block; color:var(--sand-dim); font-size:11px; margin-top:2px;}
+  .budget-row .amt{text-align:right; font-family:'JetBrains Mono',monospace;}
+  .budget-row .amt .idr{font-size:12.5px; color:var(--gold);}
+  .budget-row .amt .twd{font-size:11px; color:var(--sand-dim); margin-top:2px;}
+
+  /* ---------- BOTTOM NAV ---------- */
+  nav.bottom{
+    position:fixed; bottom:0; left:0; right:0;
+    background:rgba(11,40,24,0.92); backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+    display:flex; justify-content:space-around; padding:8px 4px calc(8px + env(safe-area-inset-bottom));
+    z-index:10;
+  }
+  nav.bottom button{
+    background:none; border:none; color:var(--sand-dim); font-family:'Work Sans',sans-serif;
+    display:flex; flex-direction:column; align-items:center; gap:3px; font-size:10.5px;
+    padding:4px 6px; flex:1;
+  }
+  nav.bottom button svg{width:20px; height:20px; stroke:var(--sand-dim); fill:none; stroke-width:1.8;}
+  nav.bottom button.active{color:var(--coral);}
+  nav.bottom button.active svg{stroke:var(--coral);}
+
+  @media(min-width:480px){
+    body{max-width:480px; margin:0 auto; box-shadow:0 0 40px rgba(0,0,0,0.4);}
+    nav.bottom{max-width:480px; margin:0 auto;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <svg class="frond f1" viewBox="0 0 100 100"><path d="M50 90 Q20 60 10 10 Q50 30 60 90 Z" fill="#E8A33D"/></svg>
+  <svg class="frond f2" viewBox="0 0 100 100"><path d="M50 90 Q20 60 10 10 Q50 30 60 90 Z" fill="#2AA8A0"/></svg>
+  <div class="eyebrow">Family Trip · 峇里島</div>
+  <h1 class="display">峇里島家族行程</h1>
+  <div class="sub">7月25日（六）— 8月1日（六）· 8天7夜 · 12人同行</div>
+  <div class="stats">
+    <div class="stat-chip">天數<b>8天7夜</b></div>
+    <div class="stat-chip">人數<b>12人</b></div>
+    <div class="stat-chip">駐點<b>4區</b></div>
+  </div>
+  <div class="zones">
+    <div class="zone-tag"><span class="zone-dot" style="background:#FF6F4C"></span>庫塔 Kuta</div>
+    <div class="zone-tag"><span class="zone-dot" style="background:#C2571B"></span>南灣 Uluwatu/金巴蘭</div>
+    <div class="zone-tag"><span class="zone-dot" style="background:#8FA05A"></span>烏布 Ubud</div>
+    <div class="zone-tag"><span class="zone-dot" style="background:#2AA8A0"></span>藍夢島 Lembongan</div>
+  </div>
+</div>
+
+<!-- ================= ITINERARY ================= -->
+<div class="view active" id="view-itinerary">
+  <div class="section-title display">每日行程</div>
+  <p class="section-desc">點擊每一天展開詳細時間軸。行程以「一區玩透」規劃，減少長輩小孩長途塞車的疲憊。</p>
+  <div class="journey" id="journey"></div>
+</div>
+
+<!-- ================= TRANSPORT ================= -->
+<div class="view" id="view-transport">
+  <div class="section-title display">交通</div>
+  <p class="section-desc">全程以包車為主，市區短程可搭配 Grab；藍夢島往返需搭快艇。</p>
+
+  <div class="card">
+    <h4>🚐 包車 <span class="badge">主要交通</span></h4>
+    <p>機場接送、跨區景點（烏魯瓦圖、烏布）全程包車，建議1-2台廂型車依家庭分坐，避免長輩小孩久候。每天約 IDR 700,000–900,000/車（含司機油資）。</p>
+  </div>
+
+  <div class="card">
+    <h4>🛵 Grab <span class="badge">短程機動</span></h4>
+    <p>庫塔、水明漾、烏布市區內短距離移動可用 Grab，較彈性，適合小家庭分開行動時使用。</p>
+  </div>
+
+  <div class="card">
+    <h4>⛴️ Sanur ↔ 藍夢島快艇</h4>
+    <p>船程約30–40分鐘，建議12人整團提前線上訂同一班次，長輩小孩建議坐船身中段減少晃動，暈船藥可提前備用。</p>
+    <table class="tt">
+      <tr><th>日期</th><th>航班</th><th>備註</th></tr>
+      <tr><td class="d">7/28</td><td>去程約 12:00-13:00</td><td>Sanur → Lembongan</td></tr>
+      <tr><td class="d">8/1</td><td>回程約 09:00-10:00</td><td>Lembongan → Sanur，抓緩衝銜接機場</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ================= LODGING ================= -->
+<div class="view" id="view-lodging">
+  <div class="section-title display">住宿</div>
+  <p class="section-desc">兩段式住宿：本島市區飯店＋藍夢島度假村。</p>
+
+  <div class="hotel-card h1">
+    <div class="stay">7/25 15:00 → 7/28 12:00 · 3晚</div>
+    <h4>Hard Rock Hotel Bali</h4>
+    <div class="addr">庫塔海灘（Kuta Beach）· 已確認訂單，3筆訂單／4間房</div>
+    <div class="meta">
+      <span class="meta-chip">✅ 已確認</span>
+      <span class="meta-chip">4間房</span>
+      <span class="meta-chip">庫塔區</span>
+    </div>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Hard+Rock+Hotel+Bali" target="_blank">📍 開啟 Google Map 導航</a>
+  </div>
+
+  <div class="hotel-card h2">
+    <div class="stay">7/28 → 8/1 · 4晚</div>
+    <h4>The Tamarind Resort - Nusa Lembongan</h4>
+    <div class="addr">羅望子度假村・藍夢島 · No.1 Jl. Jungutbatu, 峇里島, 印尼 80771</div>
+    <div class="meta">
+      <span class="meta-chip">⭐️⭐️⭐️⭐️⭐️</span>
+      <span class="meta-chip">藍夢島</span>
+      <span class="meta-chip">📞 +62 366 5437888</span>
+    </div>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=The+Tamarind+Resort+Nusa+Lembongan" target="_blank">📍 開啟 Google Map 導航</a>
+  </div>
+</div>
+
+<!-- ================= LUGGAGE ================= -->
+<div class="view" id="view-luggage">
+  <div class="section-title display">行李清單</div>
+  <p class="section-desc">點擊項目打勾，出發前確認全部完成。</p>
+
+  <div class="progress-wrap">
+    <div style="display:flex; justify-content:space-between; font-size:12.5px;">
+      <span>整體進度</span>
+      <span class="mono" id="progress-text">0 / 0</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div id="checklist"></div>
+</div>
+
+<!-- ================= BUDGET ================= -->
+<div class="view" id="view-budget">
+  <div class="section-title display">預算</div>
+  <p class="section-desc">以「玩得開心、舒服、平安」為優先，非嚴格控管預算，以下為每項概估。</p>
+  <div class="rate-note">💱 匯率參考：約 1 台幣 ≈ 560 印尼盾（100,000 IDR ≈ 178 TWD），實際依當日匯率為準。</div>
+  <div id="budget-list"></div>
+</div>
+
+<nav class="bottom">
+  <button class="tab-btn active" data-tab="itinerary">
+    <svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>
+    每日行程
+  </button>
+  <button class="tab-btn" data-tab="transport">
+    <svg viewBox="0 0 24 24"><path d="M3 12l2-6h14l2 6M5 12h14v6H5v-6z"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="16.5" cy="18.5" r="1.5"/></svg>
+    交通
+  </button>
+  <button class="tab-btn" data-tab="lodging">
+    <svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13M9 21v-6h6v6"/></svg>
+    住宿
+  </button>
+  <button class="tab-btn" data-tab="luggage">
+    <svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="14" rx="2"/><path d="M9 7V4a2 2 0 012-2h2a2 2 0 012 2v3"/></svg>
+    行李
+  </button>
+  <button class="tab-btn" data-tab="budget">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h4.5a1.5 1.5 0 010 3H9"/></svg>
+    預算
+  </button>
+</nav>
+
+<script>
+const ZONES = {
+  kuta:{label:'庫塔', color:'#FF6F4C'},
+  uluwatu:{label:'南灣', color:'#C2571B'},
+  ubud:{label:'烏布', color:'#8FA05A'},
+  transfer:{label:'轉場', color:'#E8A33D'},
+  lembongan:{label:'藍夢島', color:'#2AA8A0'},
+  depart:{label:'賦歸', color:'#E8A33D'}
+};
+
+const DAYS = [
+  { n:1, date:'7/25（六）', zone:'kuta', title:'抵達 → 庫塔', items:[
+    {time:'09:10', title:'桃園機場起飛 CI771', desc:'台北 → 峇里島'},
+    {time:'14:40', title:'抵達 Denpasar 機場', desc:'領行李、通關'},
+    {time:'15:00', title:'包車接機 → 飯店', desc:'車程約20-25分鐘'},
+    {time:'15:00', title:'Hard Rock Hotel Bali Check-in', desc:'已確認訂單，3筆訂單／4間房', map:'Hard Rock Hotel Bali'},
+    {time:'傍晚', title:'飯店泳池／戲水池', desc:'放鬆調時差，適合小孩'},
+    {time:'晚餐', title:'Made\'s Warung 或飯店 Starz Diner', desc:'庫塔廣場周邊，步行可達不需包車', map:"Made's Warung Kuta"}
+  ]},
+  { n:2, date:'7/26（日）', zone:'uluwatu', title:'南灣一日：烏魯瓦圖＋金巴蘭', items:[
+    {time:'09:00', title:'包車出發', desc:'車程約40-50分至烏魯瓦圖'},
+    {time:'10:00', title:'Uluwatu Temple 斷崖廟', desc:'注意猴子，貴重物品收好', map:'Uluwatu Temple'},
+    {time:'12:30', title:'Melasti Beach 白沙灘', desc:'可租沙灘椅，適合小孩玩水', map:'Melasti Beach Bali'},
+    {time:'15:30', title:'GWK 文化公園（選擇性）', desc:'拍照＋室內可避熱', map:'Garuda Wisnu Kencana'},
+    {time:'18:30', title:'金巴蘭海鮮晚餐＋日落', desc:'腳踩沙灘現烤海鮮，建議先訂位', tip:'💡 與 Kecak 火舞表演時間衝突，建議二選一，長輩小孩較適合直接吃海鮮看日落', map:'Menega Cafe Jimbaran'}
+  ]},
+  { n:3, date:'7/27（一）', zone:'ubud', title:'烏布文化生態一日遊', items:[
+    {time:'08:00', title:'包車出發前往烏布', desc:'車程約1.5-2小時，建議中途休息'},
+    {time:'09:30', title:'Tegalalang Rice Terrace', desc:'拍照、可選盪鞦韆，建議早上去較涼爽', map:'Tegalalang Rice Terrace'},
+    {time:'11:00', title:'Tirta Empul 聖泉寺', desc:'可淨身戲水，記得帶備用衣物', map:'Tirta Empul Temple'},
+    {time:'12:30', title:'午餐：Sari Organik / TIS Cafe', desc:'梯田景觀，免入場費', map:'Sari Organik Ubud'},
+    {time:'14:00', title:'Sacred Monkey Forest', desc:'小孩喜歡，注意隨身物品', map:'Sacred Monkey Forest Sanctuary'},
+    {time:'15:30', title:'烏布皇宮＋市場', desc:'自由購物逛街', map:'Ubud Palace'},
+    {time:'17:00', title:'包車返回庫塔', desc:'車程約1.5-2小時，可能塞車，車上休息', tip:'💡 晚餐建議回庫塔後再吃，這天別安排太滿'}
+  ]},
+  { n:4, date:'7/28（二）', zone:'transfer', title:'轉場藍夢島 Nusa Lembongan', items:[
+    {time:'上午', title:'飯店退房', desc:'Check-out 12:00前，行李打包'},
+    {time:'10:30', title:'包車前往 Sanur 港口', desc:'車程約30-40分'},
+    {time:'12:00', title:'快艇 Sanur → Lembongan', desc:'船程約30-40分，建議整團訂同班船', tip:'💡 船身較小會晃，建議坐中段，暈船藥備用'},
+    {time:'13:30', title:'抵達藍夢島，接駁飯店', desc:'The Tamarind Resort Check-in', map:'The Tamarind Resort Nusa Lembongan'},
+    {time:'傍晚', title:'Mushroom Bay 散步看夕陽', desc:'', map:'Mushroom Bay Beach'}
+  ]},
+  { n:5, date:'7/29（三）', zone:'lembongan', title:'藍夢島探索', items:[
+    {time:'09:00', title:"Devil's Tears 惡魔之淚", desc:'岸邊觀浪拍照，注意安全勿靠太近', map:"Devil's Tears Nusa Lembongan"},
+    {time:'11:00', title:'Yellow Bridge 黃橋', desc:'步行至 Nusa Ceningan 眺望，小孩可拍照不建議跳橋', map:'Yellow Bridge Nusa Ceningan'},
+    {time:'12:30', title:'午餐：島上海邊餐廳', desc:''},
+    {time:'14:00', title:'Mangrove 紅樹林船遊', desc:'水域平穩，適合長輩小孩，划船穿梭紅樹林', map:'Nusa Lembongan Mangrove Forest'},
+    {time:'傍晚', title:'飯店泳池放鬆', desc:''}
+  ]},
+  { n:6, date:'7/30（四）', zone:'lembongan', title:'海島放鬆日', items:[
+    {time:'上午', title:'飯店悠閒早餐＋泳池沙灘', desc:'自由活動'},
+    {time:'10:30', title:'平緩水域浮潛', desc:'選離岸近、有教練陪同，小孩可穿救生衣'},
+    {time:'午餐', title:'飯店或附近餐廳', desc:''},
+    {time:'下午', title:'SPA／按摩', desc:'大人放鬆，小孩由家人輪流在泳池照看'},
+    {time:'傍晚', title:'海灘散步自由活動', desc:''}
+  ], note:'⚠️ 不安排 Nusa Penida：浪大、路況崎嶇陡坡，不適合長輩小孩'},
+  { n:7, date:'7/31（五）', zone:'lembongan', title:'藍夢島最後一天', items:[
+    {time:'上午', title:'飯店悠閒早餐', desc:'泳池沙灘自由活動'},
+    {time:'10:00', title:'選擇性活動', desc:'單車環島（平緩路段）、玻璃船賞海底、或紫菜養殖區小船體驗'},
+    {time:'午餐', title:'飯店或附近海景餐廳', desc:''},
+    {time:'下午', title:'最後採買紀念品', desc:'島上小店、SPA、沙灘全家福'},
+    {time:'晚餐', title:'家族聚餐', desc:'慶祝旅程尾聲'},
+    {time:'晚上', title:'提早整理行李', desc:'確認隔天退房與快艇時間', tip:'💡 隔天要搭下午班機，這天不排太滿，留體力給小孩長輩'}
+  ]},
+  { n:8, date:'8/1（六）', zone:'depart', title:'賦歸', items:[
+    {time:'08:30', title:'飯店退房', desc:'行李務必提前打包好'},
+    {time:'09:00', title:'快艇 Lembongan → Sanur', desc:'船程約30-40分，整團訂同班次'},
+    {time:'10:00', title:'包車接駁 Sanur → 機場', desc:'車程約30-40分'},
+    {time:'10:40', title:'機場緩衝＋午餐', desc:'12人團體建議提早辦理登機', tip:'💡 快艇+接駁若遇風浪塞船，09:00這班較保險，抓足緩衝給12人過關托運'},
+    {time:'15:40', title:'CI772 起飛', desc:'峇里島 → 台北'},
+    {time:'21:05', title:'抵達桃園機場', desc:'行程結束 🌺'}
+  ]}
+];
+
+const CHECKLIST = {
+  '證件與文件':['護照（效期6個月以上）','機票電子憑證','飯店訂單截圖','旅平險保單'],
+  '個人防護':['防曬乳','帽子／陽傘','泳衣（每天都可能用到）','暈船藥（快艇搭乘前）','常備藥品（腸胃藥、退燒藥）'],
+  '電源與網路':['轉接頭（印尼圓形雙孔 220V）','行動電源','eSIM 或 SIM卡'],
+  '兒童用品':['泳圈／蛙鞋','防曬水母衣','小孩常備藥','小玩具／平板（長途車程用）'],
+  '其他':['輕便雨具（雨季偶陣雨）','購物袋／環保袋']
+};
+
+const BUDGET = [
+  {label:'包車', small:'含司機油資，6-7天', idr:'700,000–900,000 / 天/車'},
+  {label:'快艇來回', small:'Sanur ↔ Lembongan，12人', idr:'3,000,000–4,000,000'},
+  {label:'餐飲', small:'每人每餐，視餐廳等級', idr:'100,000–300,000'},
+  {label:'景點門票', small:'烏魯瓦圖、聖泉寺、猴林等，每人/景點', idr:'50,000–100,000'}
+];
+
+const RATE = 560; // 1 TWD ≈ 560 IDR
+
+function idrToTwd(str){
+  const nums = str.match(/[\d,]+/g);
+  if(!nums) return '';
+  const vals = nums.map(n=>parseInt(n.replace(/,/g,''),10)/RATE);
+  if(vals.length===2){
+    return `≈ NT$${Math.round(vals[0]).toLocaleString()}–${Math.round(vals[1]).toLocaleString()}`;
+  }
+  return `≈ NT$${Math.round(vals[0]).toLocaleString()}`;
+}
+
+function mapUrl(q){ return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`; }
+
+function renderJourney(){
+  const el = document.getElementById('journey');
+  el.innerHTML = DAYS.map((d,i)=>{
+    const z = ZONES[d.zone];
+    const itemsHtml = d.items.map(it=>`
+      <div class="item">
+        <div class="time mono">${it.time}</div>
+        <div class="content">
+          <div class="title">${it.title}</div>
+          ${it.desc ? `<div class="desc">${it.desc}</div>`:''}
+          ${it.tip ? `<div class="tip">${it.tip}</div>`:''}
+          ${it.map ? `<a class="maplink" href="${mapUrl(it.map)}" target="_blank">📍 開啟地圖</a>`:''}
+        </div>
+      </div>`).join('');
+    const noteHtml = d.note ? `<div class="item"><div class="content"><div class="tip">${d.note}</div></div></div>` : '';
+    return `
+      <div class="day-block" data-idx="${i}">
+        <div class="day-dot" style="background:${z.color}">${d.n}</div>
+        <div class="day-head" onclick="toggleDay(${i})">
+          <h3>${d.title}</h3>
+          <span class="chevron">▾</span>
+        </div>
+        <div class="day-date">${d.date} <span class="zone-label" style="background:${z.color}22; color:${z.color}">${z.label}</span></div>
+        <div class="day-body">${itemsHtml}${noteHtml}</div>
+      </div>`;
+  }).join('');
+}
+function toggleDay(i){
+  document.querySelectorAll('.day-block')[i].classList.toggle('open');
+}
+
+function renderChecklist(){
+  const el = document.getElementById('checklist');
+  let html = '';
+  let total = 0;
+  Object.entries(CHECKLIST).forEach(([cat,items])=>{
+    html += `<div class="cat-title">${cat}</div>`;
+    items.forEach(item=>{
+      total++;
+      html += `<div class="check-item" data-item onclick="toggleCheck(this)"><div class="box"></div><span class="label">${item}</span></div>`;
+    });
+  });
+  el.innerHTML = html;
+  document.getElementById('progress-text').textContent = `0 / ${total}`;
+}
+function toggleCheck(node){
+  node.classList.toggle('done');
+  const all = document.querySelectorAll('[data-item]');
+  const done = document.querySelectorAll('[data-item].done');
+  document.getElementById('progress-text').textContent = `${done.length} / ${all.length}`;
+  document.getElementById('progress-fill').style.width = `${(done.length/all.length)*100}%`;
+}
+
+function renderBudget(){
+  const el = document.getElementById('budget-list');
+  el.innerHTML = BUDGET.map(b=>`
+    <div class="budget-row">
+      <div class="label">${b.label}<small>${b.small}</small></div>
+      <div class="amt"><div class="idr">IDR ${b.idr}</div><div class="twd">${idrToTwd(b.idr)}</div></div>
+    </div>`).join('');
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('view-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+renderJourney();
+renderChecklist();
+renderBudget();
+document.querySelectorAll('.day-block')[0].classList.add('open');
+</script>
+
+</body>
+</html>
