@@ -298,12 +298,14 @@
       <span class="meta-chip">✅ 已確認</span>
       <span class="meta-chip">4間房</span>
       <span class="meta-chip">庫塔區</span>
+      <span class="meta-chip">🍳 含早餐</span>
+      <span class="meta-chip">🧸 Kids Club</span>
     </div>
+    <p style="font-size:12px; color:var(--text-dim); margin-bottom:10px;">💡 Kids Club 通常需穿襪子才能入內，建議準備一雙備用襪子</p>
     <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Hard+Rock+Hotel+Bali" target="_blank">📍 開啟 Google Map 導航</a>
     <div class="cat-title" style="margin:14px 0 6px;">附近景點</div>
     <div class="meta">
       <span class="meta-chip">🏖️ Kuta Beach（步行1分鐘）</span>
-      <span class="meta-chip">💦 Waterbom Bali 水上樂園（約1.3km）</span>
       <span class="meta-chip">🛍️ Beachwalk 購物中心（步行可達）</span>
       <span class="meta-chip">🛍️ Kuta Square</span>
     </div>
@@ -318,6 +320,7 @@
       <span class="meta-chip">2 x 3-Bedroom Villa</span>
       <span class="meta-chip">7位大人・5位兒童</span>
       <span class="meta-chip">⭐️⭐️⭐️⭐️⭐️</span>
+      <span class="meta-chip">🍳 含早餐</span>
       <span class="meta-chip">📞 +62 366 5437888</span>
     </div>
     <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=The+Tamarind+Resort+Nusa+Lembongan" target="_blank">📍 開啟 Google Map 導航</a>
@@ -337,6 +340,7 @@
 <div class="view" id="view-luggage">
   <div class="section-title display">行李清單</div>
   <p class="section-desc">點擊項目打勾，出發前確認全部完成。</p>
+  <p style="font-size:12px; color:#0E8A80; margin:-10px 0 16px; line-height:1.6;">✈️ 華航經濟艙每人托運行李限重 23kg，記得出發前秤重分裝，避免超重費用。</p>
 
   <div class="progress-wrap">
     <div style="display:flex; justify-content:space-between; font-size:12.5px;">
@@ -394,10 +398,10 @@ const DAYS = [
   { n:1, date:'7/25（六）', zone:'kuta', title:'抵達 → 庫塔', items:[
     {time:'09:10', title:'桃園機場起飛 CI771', desc:'台北 → 峇里島'},
     {time:'14:40', title:'抵達 Denpasar 機場', desc:'領行李、通關'},
-    {time:'15:00', title:'包車接機 → 飯店', desc:'車程約20-25分鐘'},
+    {time:'15:00', title:'包車接機 → 飯店', desc:'Hi-Ace 車款，最多10位＋行李，車資 IDR 600,000/台', tip:'✅ 2位提前出發，剩10位剛好1台車'},
     {time:'15:00', title:'Hard Rock Hotel Bali Check-in', desc:'已確認訂單，3筆訂單／4間房', map:'Hard Rock Hotel Bali'},
     {time:'傍晚', title:'飯店泳池／戲水池', desc:'放鬆調時差，適合小孩'},
-    {time:'晚餐', title:'Warung Nia Balinese Food & Pork Ribs', desc:'水明漾（Seminyak）人氣道地峇里料理，招牌烤肋排，離庫塔車程約10-15分', tip:'📌 已訂位 18:00，12位，尚待餐廳確認', mapDirect:'https://maps.app.goo.gl/jLmq1EC426YRXg469?g_st=ic'},
+    {time:'晚餐', title:'Warung Nia Balinese Food & Pork Ribs', desc:'水明漾（Seminyak）人氣道地峇里料理，招牌烤肋排，離庫塔車程約10-15分', tip:'✅ 已確認訂位 18:00，12位', mapDirect:'https://maps.app.goo.gl/jLmq1EC426YRXg469?g_st=ic'},
     {time:'備案', title:'Made\'s Warung 或飯店 Starz Diner', desc:'若訂位有變動，庫塔廣場周邊步行可達不需包車', map:"Made's Warung Kuta"}
   ]},
   { n:2, date:'7/26（日）', zone:'uluwatu', title:'南灣一日：烏魯瓦圖＋金巴蘭', items:[
@@ -405,7 +409,7 @@ const DAYS = [
     {time:'10:00', title:'Uluwatu Temple 斷崖廟', desc:'注意猴子，貴重物品收好', map:'Uluwatu Temple'},
     {time:'12:30', title:'Melasti Beach 白沙灘', desc:'可租沙灘椅，適合小孩玩水', map:'Melasti Beach Bali'},
     {time:'15:30', title:'GWK 文化公園（選擇性）', desc:'拍照＋室內可避熱', map:'Garuda Wisnu Kencana'},
-    {time:'17:30', title:'Menega Cafe 金巴蘭海鮮晚餐＋日落', desc:'腳踩沙灘現烤海鮮', tip:'📌 已預訂 17:30，等待餐廳回覆確認中，這間非常難訂位，機會渺茫，建議準備備案', map:'Menega Cafe Jimbaran'}
+    {time:'17:30', title:'Menega Cafe 金巴蘭海鮮晚餐＋日落', desc:'腳踩沙灘現烤海鮮', tip:'✅ 已確認訂位 17:30，12位', map:'Menega Cafe Jimbaran'}
   ]},
   { n:3, date:'7/27（一）', zone:'kuta', title:'庫塔悠閒日：飯店設施＋周邊逛街', items:[
     {time:'上午', title:'飯店泳池／水上設施', desc:'Hard Rock Hotel 大型泳池、兒童戲水池，不用移動、大人小孩都能放鬆', tip:'💡 原烏布行程已取消，改為輕鬆日，讓長輩小孩有喘息時間'},
@@ -458,7 +462,7 @@ const CHECKLIST = {
   '個人防護與保健':['防曬乳','帽子／陽傘','泳衣（每天都可能用到）','防蚊液','太陽眼鏡','常備藥品（大人小孩腸胃藥、暈船藥、退燒藥、一般感冒用藥）','耳溫槍','個人保健食品（益生菌、維他命等）'],
   '電源與網路':['轉接頭（印尼圓形雙孔 220V）','行動電源','eSIM 或 SIM卡'],
   '盥洗清潔用品':['牙膏牙刷','酒精噴霧','濕紙巾衛生紙','洗沐用品（洗面乳、髮品）'],
-  '兒童用品':['泳圈／蛙鞋','防曬水母衣','小玩具／平板（長途車程用）'],
+  '兒童用品':['泳圈／蛙鞋','防曬水母衣','小玩具／平板（長途車程用）','備用襪子（Hard Rock Kids Club 需穿襪入內）'],
   '其他':['輕便雨具（雨季偶陣雨）','購物袋／環保袋']
 };
 
