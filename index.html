@@ -305,10 +305,18 @@
     <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Hard+Rock+Hotel+Bali" target="_blank">📍 開啟 Google Map 導航</a>
     <div class="cat-title" style="margin:14px 0 6px;">附近景點</div>
     <div class="meta">
-      <span class="meta-chip">🏖️ Kuta Beach（步行1分鐘）</span>
-      <span class="meta-chip">🛍️ Beachwalk 購物中心（步行可達）</span>
-      <span class="meta-chip">🛍️ Kuta Square</span>
+      <span class="meta-chip">🏖️ Kuta Beach（步行約1-2分鐘）</span>
+      <span class="meta-chip">🛍️ Kuta Square（步行約5分鐘）</span>
+      <span class="meta-chip">🛍️ Beachwalk 購物中心（步行約8-9分鐘）</span>
+      <span class="meta-chip">🎁 Kuta Art Market（步行約6分鐘）</span>
     </div>
+    <div class="cat-title" style="margin:14px 0 6px;">附近推薦清單</div>
+    <p style="font-size:12.5px; color:var(--text-dim); line-height:1.9; margin:0;">
+      🍽️ 餐廳：Made's Warung、Poppies Restaurant、Sate Bali<br>
+      ☕ 咖啡店：Beachwalk 內 Starbucks、Common Grounds Kuta<br>
+      💍 飾品店：Kuta 街邊銀飾小店、Kuta Art Market<br>
+      🎁 伴手禮：Krisna Oleh-Oleh Bali、Joger、Kuta Art Market
+    </p>
   </div>
 
   <div class="hotel-card h2">
@@ -330,9 +338,16 @@
       <span class="meta-chip">🌅 Mushroom Bay Beach（車程約3分）</span>
       <span class="meta-chip">🏖️ Dream Beach（車程約4分）</span>
       <span class="meta-chip">🌊 Devil's Tears（車程約4分）</span>
-      <span class="meta-chip">🌳 Mangrove Forest（約1.3km）</span>
+      <span class="meta-chip">🌳 Mangrove Forest（車程約5分，約3.5km）</span>
       <span class="meta-chip">🏠 Gala-Gala 地下屋（車程約3分）</span>
+      <span class="meta-chip">🌉 Yellow Bridge（車程約10-15分）</span>
     </div>
+    <div class="cat-title" style="margin:14px 0 6px;">附近推薦清單</div>
+    <p style="font-size:12.5px; color:var(--text-dim); line-height:1.9; margin:0;">
+      🍽️ 餐廳：Karana Lembongan（約500m，異國料理）、Ohana's Beach Club（親子友善，營火晚會，週三/五有DJ，週五派對）、The Coconut Hut（親子友善，附設迷你高爾夫與兒童遊戲區）<br>
+      ☕ 咖啡店：Jungutbatu 主街沿路多間海景咖啡小店，可隨走隨看<br>
+      🎁 伴手禮／飾品：島上小店集中在 Jungutbatu 主街，手作飾品、沙灘小物選擇多
+    </p>
   </div>
 </div>
 
@@ -423,28 +438,30 @@ const DAYS = [
     {time:'10:30', title:'包車前往 Sanur 港口', desc:'車程約30-40分'},
     {time:'12:00', title:'快艇 Sanur → Lembongan', desc:'船程約30-40分，建議整團訂同班船', tip:'💡 船身較小會晃，建議坐中段，暈船藥備用'},
     {time:'14:00', title:'抵達藍夢島，接駁飯店', desc:'The Tamarind Resort Check-in（2 x 3-Bedroom Villa）', map:'The Tamarind Resort Nusa Lembongan'},
-    {time:'傍晚', title:'Mushroom Bay 散步看夕陽', desc:'', map:'Mushroom Bay Beach'}
+    {time:'傍晚', title:'Mushroom Bay 散步看夕陽', desc:'', map:'Mushroom Bay Beach'},
+    {time:'17:30', title:'Hai Bar & Grill 晚餐', desc:'', tip:'✅ 已確認訂位 17:30，12位｜🚐 餐廳提供來回免費接送', map:'Hai Bar and Grill Nusa Lembongan'}
   ]},
   { n:5, date:'7/29（三）', zone:'lembongan', title:'藍夢島探索', items:[
-    {time:'09:00', title:"Devil's Tears 惡魔之淚", desc:'岸邊觀浪拍照，注意安全勿靠太近', map:"Devil's Tears Nusa Lembongan"},
-    {time:'11:00', title:'Yellow Bridge 黃橋', desc:'步行至 Nusa Ceningan 眺望，小孩可拍照不建議跳橋', map:'Yellow Bridge Nusa Ceningan'},
-    {time:'12:30', title:'午餐：島上海邊餐廳', desc:''},
-    {time:'14:00', title:'Mangrove 紅樹林船遊', desc:'水域平穩，適合長輩小孩，划船穿梭紅樹林', map:'Nusa Lembongan Mangrove Forest'},
-    {time:'傍晚', title:'飯店泳池放鬆', desc:''}
+    {time:'09:00', title:'Mangrove 紅樹林船遊', desc:'水域平穩、受潮汐影響小，適合長輩小孩，划船穿梭紅樹林，建議安排早上較涼爽', map:'Nusa Lembongan Mangrove Forest'},
+    {time:'12:00', title:'午餐：島上海邊餐廳', desc:''},
+    {time:'14:00', title:'Yellow Bridge 黃橋', desc:'步行跨橋到金銀島 Nusa Ceningan 走走，小孩可拍照不建議跳橋', map:'Yellow Bridge Nusa Ceningan'},
+    {time:'16:30', title:"Devil's Tears 惡魔之淚", desc:'傍晚受潮汐影響浪較大，適合看巨浪與夕陽，注意安全勿靠太近', map:"Devil's Tears Nusa Lembongan"},
+    {time:'17:30', title:'Sandy Bay Beach Club 晚餐', desc:'', tip:'✅ 已確認訂位 17:30，12位', map:'Sandy Bay Beach Club Nusa Lembongan'}
   ]},
   { n:6, date:'7/30（四）', zone:'lembongan', title:'海島放鬆日', items:[
     {time:'上午', title:'飯店悠閒早餐＋泳池沙灘', desc:'自由活動'},
     {time:'10:30', title:'平緩水域浮潛', desc:'選離岸近、有教練陪同，小孩可穿救生衣'},
     {time:'午餐', title:'飯店或附近餐廳', desc:''},
     {time:'下午', title:'SPA／按摩', desc:'大人放鬆，小孩由家人輪流在泳池照看'},
-    {time:'傍晚', title:'海灘散步自由活動', desc:''}
+    {time:'傍晚', title:'海灘散步自由活動', desc:''},
+    {time:'晚餐', title:'Ohana\'s Beach Club（推薦）', desc:'親子友善餐廳，有營火晚會；週三、週五有DJ，週五晚上有派對', map:"Ohana's Beach Club Nusa Lembongan"}
   ], note:'⚠️ 不安排 Nusa Penida：浪大、路況崎嶇陡坡，不適合長輩小孩'},
   { n:7, date:'7/31（五）', zone:'lembongan', title:'藍夢島最後一天', items:[
     {time:'上午', title:'飯店悠閒早餐', desc:'泳池沙灘自由活動'},
     {time:'10:00', title:'選擇性活動', desc:'單車環島（平緩路段）、玻璃船賞海底、或紫菜養殖區小船體驗'},
     {time:'午餐', title:'飯店或附近海景餐廳', desc:''},
     {time:'下午', title:'最後採買紀念品', desc:'島上小店、SPA、沙灘全家福'},
-    {time:'晚餐', title:'家族聚餐', desc:'慶祝旅程尾聲'},
+    {time:'晚餐', title:'The Coconut Hut（推薦）', desc:'親子友善餐廳，附設迷你高爾夫球與兒童遊戲區，適合家族聚餐慶祝旅程尾聲', map:'The Coconut Hut Nusa Lembongan'},
     {time:'晚上', title:'提早整理行李', desc:'確認隔天退房與快艇時間', tip:'💡 隔天要搭下午班機，這天不排太滿，留體力給小孩長輩'}
   ]},
   { n:8, date:'8/1（六）', zone:'depart', title:'賦歸', items:[
